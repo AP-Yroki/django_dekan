@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>BestShop</title>
+</head>
+<body>
+    <div class="container">
+        <header class="shop__header">
+            <div class="logo__container">
+                <a href="#" class="logo__link">
+                    <span class="logo">Best Shop</span>
+                </a>
+            </div>
+
+            <nav class="nav__links">
+                <a href="#" class="nav__link">Регистрация</a>
+                <a href="#" class="nav__link">Авторизация</a>
+                <a href="#" class="nav__link">Мои заказы</a>
+                <a href="#" class="nav__link">Корзина</a>
+                <a href="#" class="nav__link" onclick="openModal()">Добавить товар</a>
+            </nav>
+
+            <div class="catalog__header text-center">
+                <h1 class="display-4">Каталог товаров</h1>
+            </div>
+        </header>
+
+        <main>
+            {% if items %}
+                <h2 class="productlisttitle">Список товаров:</h2>
+                <div class="row product__list">
+                    {% for item_current in items %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 rounded-3 shadow-sm product__card">
+                                <div class="card__header py-3">
+                                    <h4 class="my-0 fw-normal product__name">{{ item_current.name }}</h4>
+                                </div>
+                                <div class="card__body">
+                                    <h1 class="cardtitle pricingcard__title">{{ item_current.price }}р.</h1>
+                                    <p class="product__info">{{ item_current.info }}</p>
+                                    <button type="button" class="btn btn-success btn-block addtocart__btn">Добавить в корзину</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </main>
+
+        <!-- Модальное окно -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span onclick="closeModal()" style="float: right; cursor: pointer;">&times;</span>
+                <!-- Ваша форма или ее часть -->
+                <form method="post" action="create/">
+                    {% csrf_token %}
+                    <p>
+                        <label>Введите название товара:</label><br>
+                        <input type="text" placeholder="name" name="name">
+                    </p>
+                    <p>
+                        <label>Введите Характеристики:</label><br>
+                        <input type="text" placeholder="info" name="info">
+                    </p>
+                    <p>
+                        <label>Введите Цену:</label><br>
+                        <input type="number" placeholder="price" name="price">
+                    </p>
+                    <p>
+                        <label>Введите Производителя:</label><br>
+                        <input type="text" placeholder="author" name="author">
+                    </p>
+                    <input type="submit" value="Сохранить">
+                </form>
+            </div>
+        </div>
+
+        <footer class="shop__footer">
+            <div class="row">
+                <div class="license">
+                    <small class="d-block mb-3 text-muted">&copy; 2023 Все права защищены</small>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript для открытия и закрытия модального окна -->
+    <script>
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

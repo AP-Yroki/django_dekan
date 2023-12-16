@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test world</title>
+</head>
+<body>
+    <form action="create/" method="post">
+        {% csrf_token %}
+        <p>
+            <label>Введите название товара:</label><br>
+            <input type="text" placeholder="name" name="name">
+        </p>
+        <p>
+            <label>Введите Характеристики:</label><br>
+            <input type="text" placeholder="info" name="info">
+        </p>
+        <p>
+            <label>Введите Цену:</label><br>
+            <input type="number" placeholder="price" name="price">
+        </p>
+        <p>
+            <label>Введите Производителя:</label><br>
+            <input type="text" placeholder="author" name="author">
+        </p>
+        <input type="submit" value="Сохранить">
+    </form>
+
+    {% if items %}
+        <h2>Список товаров: </h2>
+        <div class="row">
+            {% for item_current in items %}
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">{{ item_current.name }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">{{ item_current.price }}р.</h1>
+                            <p>{{ item_current.info }}</p>
+                            <button type="button" class="w-100 btn btn-lg btn-outline-success">Добавить в корзину</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>

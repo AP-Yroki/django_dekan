@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="{% url 'create_product' %}" method="post">
+        {% csrf_token %}
+        <p>
+            <label>Введите название товара:</label><br>
+            <input type="text" placeholder="name" name="name">
+        </p>
+        <p>
+            <label>Введите Характеристики:</label><br>
+            <input type="text" placeholder="info" name="info">
+        </p>
+        <p>
+            <label>Введите Цену:</label><br>
+            <input type="number" placeholder="price" name="price">
+        </p>
+        <p>
+            <label>Введите Производителя:</label><br>
+            <input type="text" placeholder="author" name="author">
+        </p>
+        <input type="submit" value="Сохранить">
+    </form>
+
+</body>
+</html>

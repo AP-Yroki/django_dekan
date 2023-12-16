@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <label>Введите имя</label>
+            <input type="text" name="name" value="{{ phone.name }}" />
+        </p>
+        <p>
+            <label>Введите Фамилию</label>
+            <input type="text" name="info" value="{{ phone.info }}" />
+        </p>
+        <p>
+            <label>Введите Возраст</label>
+            <input type="text" name="price" value="{{ phone.price }}" />
+        </p>
+        <p>
+            <label>Введите Пол</label>
+            <input type="text" name="author" value="{{ phone.author }}" />
+        </p>
+        <input type="submit" value="Сохранить">
+    </form>
+</body>
+</html>
