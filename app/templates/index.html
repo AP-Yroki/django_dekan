@@ -51,11 +51,10 @@
             {% endif %}
         </main>
 
-        <!-- Модальное окно -->
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span onclick="closeModal()" style="float: right; cursor: pointer;">&times;</span>
-                <!-- Ваша форма или ее часть -->
+
                 <form method="post" action="create/">
                     {% csrf_token %}
                     <p>
@@ -88,7 +87,6 @@
         </footer>
     </div>
 
-    <!-- JavaScript для открытия и закрытия модального окна -->
     <script>
         function openModal() {
             document.getElementById('myModal').style.display = 'block';
